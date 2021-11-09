@@ -8,7 +8,13 @@ form.addEventListener('submit', onFormSubmit);
 function onFormSubmit(event) {
     event.preventDefault();
     onFormValidate();
-    onFormData();    
+    const formElement = event.currentTarget.elements   
+    const mail = formElement.email.value;
+    const password = formElement.password.value;
+    const formData = {
+        mail, password
+    };
+    console.log(formData);   
     form.reset();
 }
 
@@ -20,12 +26,3 @@ function onFormValidate() {
        return;       
 }
 
-function onFormData() {
-    const formElement = event.currentTarget.elements;   
-    const mail = formElement.email.value;
-    const password = formElement.password.value;
-    const formData = {
-        mail, password
-    };
-    console.log(formData);
-}
