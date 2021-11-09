@@ -32,14 +32,48 @@ const images = [
 // listOfImages.append(...img)
 
 
-const makeListOfImages = ({url,alt}) => {
-    return `
+const makeListOfImages = ({ url, alt }) => {
+  return `
     <li class="gallery__item">
         <img src="${url}" alt="${alt}">
     </li>
     `
-   } 
+};
+
+const styleOfImages = () => {
+  return `
+  <style>
+      .gallery {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.gallery__item {
+  list-style: none;
+  width: 300px;
+  height: 200px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  object-fit: cover;
+}
+
+img {
+  display: block;
+  max-height: 100%;
+}
+
+.gallery__item:nth-child(1) img {
+  object-position: -20px 0px;
+}
+    </style>
+  `
+};
+   
 
 const galleryEl = document.querySelector('ul.gallery');
 const listOfImages = images.map(makeListOfImages).join('');
 galleryEl.insertAdjacentHTML('afterbegin', listOfImages);
+document.head.insertAdjacentHTML('beforeend', styleOfImages());
